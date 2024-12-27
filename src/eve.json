@@ -1,0 +1,1 @@
+{"timestamp":"2024-12-26T18:11:45.041544-0300","flow_id":459908805344207,"in_iface":"enp10s0","event_type":"dns","src_ip":"172.20.1.62","src_port":63887,"dest_ip":"1.1.1.3","dest_port":53,"proto":"UDP","pkt_src":"wire/pcap","dns":{"type":"query","id":47861,"rrname":"clientservices.googleapis.com","rrtype":"HTTPS","tx_id":0,"opcode":0}}
