@@ -1,5 +1,11 @@
+import express from 'express';
 import fs from 'fs';
 import { parse } from 'tldts'; // Biblioteca para processar domínios
+
+import path from 'path';
+
+const app = express();
+const PORT = 3000;
 
 function processJSON(data) {
   const parsedData = data
@@ -17,7 +23,9 @@ function processJSON(data) {
       dest_port: item.dest_port,
       type: item.dns.type,
       rrname: item.dns.rrname,
+      timestamp: item.timestamp, // Inclui o timestamp
     }));
+console.log(filteredData);
 
   // Consolida os dados por domínio raiz e IP de origem
   const consolidatedData = {};
@@ -35,6 +43,7 @@ function processJSON(data) {
         dest_port: item.dest_port,
         type: item.type,
         root_domain: rootDomain,
+        timestamp: item.timestamp, // Adiciona o timestamp inicial
         count: 0,
       };
     }
@@ -67,4 +76,29 @@ fs.readFile('./eve.json', 'utf8', (err, content) => {
   } catch (e) {
     console.error('Erro ao processar os dados:', e);
   }
+});
+
+// Rota para servir o JSON filtrado
+app.get('/relatorio', (req, res) => {
+  const filePath = path.resolve('./src/json-filtrado/filtered_data_minimal.json');
+
+  fs.readFile(filePath, 'utf8', (err, data) => {
+    if (err) {
+      console.error('Erro ao ler o arquivo JSON:', err);
+      return res.status(500).json({ error: 'Erro ao carregar os dados' });
+    }
+
+    try {
+      const jsonData = JSON.parse(data);
+      res.json(jsonData); // Envia o JSON como resposta
+    } catch (parseError) {
+      console.error('Erro ao parsear o JSON:', parseError);
+      res.status(500).json({ error: 'Erro ao processar os dados' });
+    }
+  });
+});
+
+// Inicia o servidor
+app.listen(PORT, () => {
+  console.log(`Servidor rodando em http://localhost:${PORT}`);
 });

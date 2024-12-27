@@ -4,13 +4,14 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node --watch src/app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "express": "^4.21.2",
     "fs": "^0.0.1-security",
     "tldts": "^6.1.70"
   }
