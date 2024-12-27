@@ -46,7 +46,7 @@ fs.readFile('./eve.json', 'utf8', (err, content) => {
     const filteredData = processJSON(content);
 
     // Salva os dados filtrados e reduzidos em um novo arquivo JSON
-    fs.writeFile('./filtered_data_minimal.json', JSON.stringify(filteredData, null, 2), writeErr => {
+    fs.writeFile('./src/json-filtrado/filtered_data_minimal.json', JSON.stringify(filteredData, null, 2), writeErr => {
       if (writeErr) {
         console.error('Erro ao salvar o arquivo:', writeErr);
         return;
