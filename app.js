@@ -18,7 +18,21 @@ function processJSON(data) {
       rrname: item.dns.rrname,
     }));
 
-  return filteredData;
+ // Calcula as ocorrências e consolida os dados
+ const consolidatedData = {};
+ filteredData.forEach(item => {
+   const key = `${item.src_ip}-${item.rrname}`;
+   if (!consolidatedData[key]) {
+     consolidatedData[key] = {
+       ...item,
+       count: 0,
+     };
+   }
+   consolidatedData[key].count += 1;
+ });
+
+ // Retorna apenas valores consolidados
+ return Object.values(consolidatedData);
 }
 
 // Simula a leitura de um arquivo com os dados

@@ -5,7 +5,8 @@
     "proto": "UDP",
     "dest_port": 53,
     "type": "query",
-    "rrname": "clientservices.googleapis.com"
+    "rrname": "clientservices.googleapis.com",
+    "count": 2
   },
   {
     "src_ip": "172.20.1.62",
@@ -13,15 +14,8 @@
     "proto": "UDP",
     "dest_port": 53,
     "type": "query",
-    "rrname": "clientservices.googleapis.com"
-  },
-  {
-    "src_ip": "172.20.1.62",
-    "dest_ip": "1.1.1.3",
-    "proto": "UDP",
-    "dest_port": 53,
-    "type": "query",
-    "rrname": "mc6.reasonsecurity.com"
+    "rrname": "mc6.reasonsecurity.com",
+    "count": 1
   },
   {
     "src_ip": "172.20.1.107",
@@ -29,6 +23,7 @@
     "proto": "UDP",
     "dest_port": 53,
     "type": "query",
-    "rrname": "logger.febacapital.com"
+    "rrname": "logger.febacapital.com",
+    "count": 1
   }
 ]
